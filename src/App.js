@@ -1,9 +1,11 @@
 import React from 'react';
-import { BingHook } from './hooks/hooks'
+import { BingHook } from './hooks/hooks';
+import { trigger } from './functions/functions';
 import './App.css';
 
 
-// TODO:
+// TODO: 👉 parse bing wallpaper url
+//       👉 add button animations
 
 // DONE:
 
@@ -16,23 +18,23 @@ function CalculatorBox() {
       <div className='box'>
         <div id='display'>123</div>
         <div className='buttons'>
-          <button id='clear'>AC</button>
-          <button id='divide'>/</button>
-          <button id='multiply'>x</button>
-          <button id='subtract'>-</button>
-          <button id='add'>+</button>
-          <button id='equals'>=</button>
-          <button id='zero'>0</button>
-          <button id='one'>1</button>
-          <button id='two'>2</button>
-          <button id='three'>3</button>
-          <button id='four'>4</button>
-          <button id='five'>5</button>
-          <button id='six'>6</button>
-          <button id='seven'>7</button>
-          <button id='eight'>8</button>
-          <button id='nine'>9</button>
-          <button id='decimal'>.</button>
+          <button onClick={trigger} id='clear'>AC</button>
+          <button onClick={trigger} id='divide'>/</button>
+          <button onClick={trigger} id='multiply'>x</button>
+          <button onClick={trigger} id='subtract'>-</button>
+          <button onClick={trigger} id='add'>+</button>
+          <button onClick={trigger} id='equals'>=</button>
+          <button onClick={trigger} id='zero'>0</button>
+          <button onClick={trigger} id='one'>1</button>
+          <button onClick={trigger} id='two'>2</button>
+          <button onClick={trigger} id='three'>3</button>
+          <button onClick={trigger} id='four'>4</button>
+          <button onClick={trigger} id='five'>5</button>
+          <button onClick={trigger} id='six'>6</button>
+          <button onClick={trigger} id='seven'>7</button>
+          <button onClick={trigger} id='eight'>8</button>
+          <button onClick={trigger} id='nine'>9</button>
+          <button onClick={trigger} id='decimal'>.</button>
         </div>
       </div>
     </div>

@@ -9,15 +9,13 @@ function useBingHook() {
 
   useEffect(() => {
     const getWallpaper = async () => {
-      console.log('starting fetch')
-      const res = await fetch( BINGURL );
+      const res = await fetch( 'https://cors-anywhere.herokuapp.com/' + BINGURL );
       const json = await res.json();
-      console.log('fetched')
-      console.log(json);
+      console.log('bing.com' + json.images[0].url);
       setWallpaper('');
     };
     getWallpaper();  
-  }, [] );
+  }, []);
 
   return { wallpaper };
 };
