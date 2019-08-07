@@ -5,19 +5,20 @@ import { BINGURL } from '../globals/globals';
 
 const BingHook = createContainer(useBingHook);
 function useBingHook() {
-  const [wallpaper, setWallpaper] = useState('hi');
+  const [wallpaper, setWallpaper] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getWallpaper = async () => {
       const res = await fetch( 'https://cors-anywhere.herokuapp.com/' + BINGURL );
       const json = await res.json();
-      console.log('bing.com' + json.images[0].url);
-      setWallpaper('');
+      setWallpaper('https://bing.com' + json.images[0].url);
+      setLoading(false);
     };
     getWallpaper();  
   }, []);
 
-  return { wallpaper };
+  return { wallpaper, loading };
 };
 
 export { BingHook };

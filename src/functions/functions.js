@@ -1,7 +1,7 @@
 function trigger(event) {
-  const btn = document.querySelector('#' + event.target.id);
-  setTimeout( () => btn.classList.remove('trigger'), 500 );
-  btn.classList.add('trigger');
+  const text = document.querySelector('#' + event.target.id + 'P');
+  setTimeout( () => text.classList.remove('trigger'), 500 );
+  text.classList.add('trigger');
 };
 
 export { trigger };
