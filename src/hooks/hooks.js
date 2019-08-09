@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createContainer } from 'unstated-next';
+import { rounder } from '../functions/functions';
 import { BINGURL } from '../globals/globals';
 
 
@@ -36,7 +37,7 @@ function useCalcHook() {
   const inputChar = (event) => {
     const char = document.querySelector('#' + event.target.id + 'P').innerHTML;
     const endChar = equation[equation.length - 1];
-    const operReg = new RegExp('\\' + endChar + '\$');
+    const operReg = new RegExp('\\' + endChar + '$');
 
     (char === 'AC') ? setEquation(initialState) :
     (equation.length === 1) ? (char === '.') ? setEquation( equation => equation.concat(char) ) :
@@ -44,7 +45,7 @@ function useCalcHook() {
                               setEquation( equation => equation.replace(/0/, '').concat(char) ) :
     (char === '.' && equation.includes('.')) ? setEquation( equation ) :
     (char in opers && endChar in opers) ? setEquation( equation => equation.replace(operReg, '').concat(char) ) :
-    (char === '=') ? setEquation( eval(equation.replace(opersReg, (match) => opers[match])).toString() ) :
+    (char === '=') ? setEquation( rounder(eval(equation.replace(opersReg, (match) => opers[match]))).toString() ) :
     setEquation( equation => equation.concat(char) );
   };
 

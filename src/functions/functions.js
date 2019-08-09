@@ -4,4 +4,8 @@ function trigger(event) {
   char.classList.add('trigger');
 };
 
-export { trigger };
+function rounder(num) {
+  return Math.round( num * 100000 ) / 100000;
+};
+
+export { trigger, rounder };
