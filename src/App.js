@@ -18,6 +18,7 @@ import './App.css';
 //       ✅ wrap onClick functions into single click function
 //       ✅ define separate background display component
 //       ✅ round equation results
+//       ✅ replace hardcoded buttons html with mappped html
 
 
 function CalculatorDisplay() {
@@ -28,27 +29,24 @@ function CalculatorDisplay() {
     calchook.inputChar(event);
   };
 
+  const buttonsArr = [
+    ['clear', 'AC'], ['divide', '÷'], ['multiply', '×'],
+    ['subtract', '-'], ['add', '+'], ['equals', '='],
+    ['zero', 0], ['one', 1], ['two', 2],
+    ['three', 3], ['four', 4], ['five', 5],
+    ['six', 6], ['seven', 7], ['eight', 8],
+    ['nine', 9], ['decimal', '.']
+  ];
+
   return (
     <div className='box'>
       <div id='display'>{calchook.equation}</div>
       <div className='buttons'>
-        <button onClick={click} id='clear'><p id='clearP'>AC</p></button>
-        <button onClick={click} id='divide'><p id='divideP'>÷</p></button>
-        <button onClick={click} id='multiply'><p id='multiplyP'>×</p></button>
-        <button onClick={click} id='subtract'><p id='subtractP'>-</p></button>
-        <button onClick={click} id='add'><p id='addP'>+</p></button>
-        <button onClick={click} id='equals'><p id='equalsP'>=</p></button>
-        <button onClick={click} id='zero'><p id='zeroP'>0</p></button>
-        <button onClick={click} id='one'><p id='oneP'>1</p></button>
-        <button onClick={click} id='two'><p id='twoP'>2</p></button>
-        <button onClick={click} id='three'><p id='threeP'>3</p></button>
-        <button onClick={click} id='four'><p id='fourP'>4</p></button>
-        <button onClick={click} id='five'><p id='fiveP'>5</p></button>
-        <button onClick={click} id='six'><p id='sixP'>6</p></button>
-        <button onClick={click} id='seven'><p id='sevenP'>7</p></button>
-        <button onClick={click} id='eight'><p id='eightP'>8</p></button>
-        <button onClick={click} id='nine'><p id='nineP'>9</p></button>
-        <button onClick={click} id='decimal'><p id='decimalP'>.</p></button>
+        {buttonsArr.map( a =>
+          <button onClick={click} id={a[0]}>
+            <p id={a[0] + 'P'}>{a[1]}</p>
+          </button>
+        )}
       </div>
     </div>
   )
