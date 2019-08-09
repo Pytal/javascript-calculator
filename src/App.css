@@ -68,17 +68,23 @@
   background-color: #424874;
   border-radius: 8px 8px 0 0;
   color: whitesmoke;
+  font-family: 'Segoe UI';
   font-size: 50px;
   font-weight: bold;
   text-align: right;
   align-self: center;
-  padding: 10px;
+  padding-right: 10px;
+  white-space: nowrap;
+  overflow-x: scroll;
+  direction: rtl;
+  unicode-bidi: plaintext;
 }
 
 button {
   background-color: #13070C;
   color: whitesmoke;
   font-size: 180%;
+  font-family: 'Segoe UI';
   border: none;
   outline: none;
   box-shadow: 0 0 0 1px #333;
@@ -107,6 +113,13 @@ button:hover {
 #divide, #clear {
   background-color: #222;
 }
+
+#equalsP, #addP,
+#subtractP, #multiplyP,
+#divideP, #clearP {
+  margin-top: 25px;
+}
+
 
 #equals:hover, #add:hover,
 #subtract:hover, #multiply:hover,
