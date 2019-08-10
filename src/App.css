@@ -89,19 +89,17 @@ button {
   outline: none;
   box-shadow: 0 0 0 1px #333;
   margin: 1px;
-  transition: filter 0.1s, transform 0s,
-              background-color 0.1s,
-              opacity 1s cubic-bezier(0, 1.15, 0, 1);
 }
 
-.trigger:defined {
-  pointer-events: none;
-  transform: translateY(-200px);
-  transition: transform 0.5s cubic-bezier(0, 1, 0, 1);
+button:active {
+  filter: brightness(0.5);
 }
 
 button:hover {
   background-color: #333;
+}
+
+button, button:hover {
   transition: background-color 0.1s;
 }
 
@@ -131,14 +129,17 @@ button:hover {
   background-color: darkred;
 }
 
-button:active {
-  filter: brightness(50%);
+p {
+  line-height: 70%;
 }
 
-p {
+.trigger:defined {
+  transform: scale(3);
+}
+
+p, .trigger:defined {
   pointer-events: none;
-  position: relative;
-  line-height: 70%;
+  transition: transform 0.5s cubic-bezier(0, 1, 0, 1);
 }
 
 h1 {

@@ -4,7 +4,7 @@ import { trigger } from './functions/functions';
 import './App.css';
 
 
-// TODO: 👉 implement smooth text animations
+// TODO:
 
 // BUGS: ✅ subtract symbol causes display to break line
 
@@ -15,8 +15,9 @@ import './App.css';
 //       ✅ define separate background display component
 //       ✅ round equation results
 //       ✅ replace hardcoded buttons html with mappped html
-//       ✅ add regex to check for decimal between operators
+//       ✅ add regex to check for decimal in current number
 //       🆗 freeCC Feature Complete
+//       ✅ implement smooth char animations
 
 
 function CalculatorDisplay() {
