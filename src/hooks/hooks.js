@@ -9,15 +9,14 @@ function useBingHook() {
   const [wallpaper, setWallpaper] = useState('');
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const getWallpaper = async () => {
-      const res = await fetch( 'https://cors-anywhere.herokuapp.com/' + BINGURL );
-      const json = await res.json();
-      setWallpaper('https://bing.com' + json.images[0].url);
-      setLoading(false);
-    };
-    getWallpaper();
-  }, []);
+  async function getWallpaper() {
+    const res = await fetch( 'https://cors-anywhere.herokuapp.com/' + BINGURL );
+    const json = await res.json();
+    setWallpaper('https://bing.com' + json.images[0].url);
+    setLoading(false);
+  };
+
+  useEffect(() => getWallpaper(), []);
 
   return { wallpaper, loading };
 };
@@ -25,31 +24,35 @@ function useBingHook() {
 const CalcHook = createContainer(useCalcHook);
 function useCalcHook() {
   const initialState = '0';
-  const [equation, setEquation] = useState(initialState);
+  const [expr, setExpr] = useState(initialState);
+  const opersReg = new RegExp('\\÷|\\×|\\-|\\+', 'g');
+  const opersRegEnd = new RegExp('\\÷|\\×|\\-|\\+$', 'g');
   const opers = {
     '÷': '/',
     '×': '*',
     '-': '-',
     '+': '+'
   };
-  const opersReg = new RegExp('\\÷|\\×|\\-|\\+', 'g');
 
-  const inputChar = (event) => {
+  function inputChar(event) {
     const char = document.querySelector('#' + event.target.id + 'P').innerHTML;
-    const endChar = equation[equation.length - 1];
-    const operReg = new RegExp('\\' + endChar + '$');
+    const endChar = expr[expr.length - 1];
+    const splitExpr = expr.split(opersReg).filter( a => a !== '' );
+    const currNum = splitExpr[splitExpr.length - 1];
 
-    (char === 'AC') ? setEquation(initialState) :
-    (equation.length === 1) ? (char === '.') ? setEquation( equation => equation.concat(char) ) :
-                              (char === '=') ? setEquation( equation ) :
-                              setEquation( equation => equation.replace(/0/, '').concat(char) ) :
-    (char === '.' && equation.includes('.')) ? setEquation( equation ) :
-    (char in opers && endChar in opers) ? setEquation( equation => equation.replace(operReg, '').concat(char) ) :
-    (char === '=') ? setEquation( rounder(eval(equation.replace(opersReg, (match) => opers[match]))).toString() ) :
-    setEquation( equation => equation.concat(char) );
+    (char === 'AC') ? setExpr(initialState) :
+    (expr.length === 1) ? (char === '.') ? setExpr( expr => expr.concat(char) ) :
+                          (char === '=') ? setExpr( expr ) :
+                          setExpr( expr => expr.replace(/0/, '').concat(char) ) :
+    (char === '.' && currNum.includes('.')) ? setExpr( expr ) :
+    (char in opers && endChar in opers && char !== '-') ?
+      setExpr( expr => expr.replace(opersRegEnd, '').concat(char) ) :
+    (char === '=') ? // eslint-disable-next-line
+      setExpr( rounder(eval(expr.replace(opersReg, (match) => opers[match]))).toString() ) :
+    setExpr( expr => expr.concat(char) );
   };
 
-  return { equation, inputChar };
+  return { expr, inputChar };
 };
 
 export { BingHook, CalcHook };

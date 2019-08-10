@@ -4,11 +4,7 @@ import { trigger } from './functions/functions';
 import './App.css';
 
 
-// TODO: 👉 replace eval() with function
-//       👉 add regex to check decimal exist between operators
-//       👉 implement smooth text animations
-//       👉 implement calc history entry display component
-//       👉 rewrite styles with styled-components
+// TODO: 👉 implement smooth text animations
 
 // BUGS: ✅ subtract symbol causes display to break line
 
@@ -19,6 +15,8 @@ import './App.css';
 //       ✅ define separate background display component
 //       ✅ round equation results
 //       ✅ replace hardcoded buttons html with mappped html
+//       ✅ add regex to check for decimal between operators
+//       🆗 freeCC Feature Complete
 
 
 function CalculatorDisplay() {
@@ -40,12 +38,12 @@ function CalculatorDisplay() {
 
   return (
     <div className='box'>
-      <div id='display'>{calchook.equation}</div>
+      <div id='display'>{calchook.expr}</div>
       <div className='buttons'>
         {buttonsArr.map( a =>
-          <button onClick={click} id={a[0]}>
-            <p id={a[0] + 'P'}>{a[1]}</p>
-          </button>
+        <button onClick={click} id={a[0]}>
+          <p id={a[0] + 'P'}>{a[1]}</p>
+        </button>
         )}
       </div>
     </div>
