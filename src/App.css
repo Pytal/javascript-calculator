@@ -9,9 +9,9 @@
   position: absolute;
   object-fit: cover;
   object-position: bottom;
-  width: 100%;
-  height: 100%;
-  filter: brightness(0.5);
+  width: 100vw;
+  height: 100vh;
+  filter: brightness(0.8);
 }
 
 /* Grids */
@@ -39,12 +39,15 @@
 
 .box {
   position: relative;
-  box-shadow: 0 0 0 5px #222, 0 2px 15px 3px rgba(0, 0, 0, 0.3),
-                              0 2px 15px 3px rgba(0, 0, 0, 0.3),
-                              0 2px 15px 3px rgba(0, 0, 0, 0.3);
+  background-color: rgba(0,0,0,0.5);
+  backdrop-filter: blur(20px) saturate(125%);
+  box-shadow: 0 0 0 5px black, 0 2px 15px 3px rgba(0,0,0,0.3),
+                               0 2px 15px 3px rgba(0,0,0,0.3),
+                               0 2px 15px 3px rgba(0,0,0,0.3);
   border-radius: 8px;
   height: fit-content;
   margin-top: 100px;
+  padding: 0 2px 2px 2px;
   display: grid;
   grid-template-columns: 340px;
   grid-template-rows: max-content max-content;
@@ -65,7 +68,6 @@
 
 /* Styles */
 #display {
-  background-color: #424874;
   border-radius: 8px 8px 0 0;
   color: whitesmoke;
   font-family: 'Segoe UI';
@@ -81,14 +83,13 @@
 }
 
 button {
-  background-color: #13070C;
+  background-color: rgba(0,0,0,0.7);
   color: whitesmoke;
-  font-size: 180%;
+  font-size: 29px;
   font-family: 'Segoe UI';
   border: none;
   outline: none;
-  box-shadow: 0 0 0 1px #333;
-  margin: 1px;
+  margin: 2px;
 }
 
 button:active {
@@ -96,7 +97,7 @@ button:active {
 }
 
 button:hover {
-  background-color: #333;
+  background-color: rgba(255,255,255,0.3);
 }
 
 button, button:hover {
@@ -109,7 +110,7 @@ button, button:hover {
 #equals, #add,
 #subtract, #multiply,
 #divide, #clear {
-  background-color: #222;
+  background-color: rgba(0,0,0,0.3);
 }
 
 #equalsP, #addP,
@@ -122,11 +123,11 @@ button, button:hover {
 #equals:hover, #add:hover,
 #subtract:hover, #multiply:hover,
 #divide:hover {
-  background-color: #E54C00;
+  background-color: rgba(229,76,0,1);
 }
 
 #clear:hover {
-  background-color: darkred;
+  background-color: rgba(150,0,0,1);
 }
 
 p {
@@ -139,6 +140,7 @@ p {
 
 p, .trigger:defined {
   pointer-events: none;
+  transform-origin: center;
   transition: transform 0.5s cubic-bezier(0, 1, 0, 1);
 }
 
