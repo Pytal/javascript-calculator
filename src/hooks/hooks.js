@@ -9,14 +9,15 @@ function useBingHook() {
   const [wallpaper, setWallpaper] = useState('');
   const [loading, setLoading] = useState(true);
 
-  async function getWallpaper() {
-    const res = await fetch( 'https://cors-anywhere.herokuapp.com/' + BINGURL );
-    const json = await res.json();
-    setWallpaper('https://bing.com' + json.images[0].url);
-    setLoading(false);
-  };
-
-  useEffect(() => getWallpaper(), []);
+  useEffect(() => {
+    async function getWallpaper() {
+      const res = await fetch( 'https://cors-anywhere.herokuapp.com/' + BINGURL );
+      const json = await res.json();
+      setWallpaper('https://bing.com' + json.images[0].url);
+      setLoading(false);
+    };
+    getWallpaper();
+  }, []);
 
   return { wallpaper, loading };
 };

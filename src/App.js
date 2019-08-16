@@ -44,7 +44,7 @@ function CalculatorDisplay() {
       <div id='display'>{calchook.expr}</div>
       <div className='buttons'>
         {buttonsArr.map( a =>
-        <button onClick={click} id={a[0]}>
+        <button onClick={click} id={a[0]} key={a[0]}>
           <p id={a[0] + 'P'}>{a[1]}</p>
         </button>
         )}
