@@ -18,6 +18,8 @@ import './App.css';
 //       ✅ add regex to check for decimal in current number
 //       🆗 freeCC Feature Complete
 //       ✅ implement smooth char animations
+//       ✅ implement acrylic-esque backdrop-filter
+//       ✅ add text fade (mask-image) to display overscroll
 
 
 function CalculatorDisplay() {
