@@ -1,10 +1,12 @@
 import React from 'react';
 import { BingHook, CalcHook } from './hooks/hooks';
 import { trigger } from './functions/functions';
+import Moveable from 'react-moveable';
 import './App.css';
 
 
-// TODO:
+// TODO: 👉 implement draggability for calculator
+//       👉 implement bing wallpaper switching
 
 // BUGS: ✅ subtract symbol causes display to break line
 
@@ -21,6 +23,27 @@ import './App.css';
 //       ✅ implement acrylic-esque backdrop-filter
 //       ✅ add text fade (mask-image) to display overscroll
 
+
+function MoveableComponent() {
+  const frame = { translate: [0,0] };
+
+  return (
+    <Moveable
+      target={document.querySelector('.boxer')}
+      container={null}
+      origin={true}
+      edge={false}
+
+      scalable={true}
+      draggable={true}
+      throttleDrag={0}
+      keepRatio={true}
+      onDragStart={ ({set}) => set(frame.translate) }
+      onDrag={ ({target,beforeTranslate}) => { frame.translate = beforeTranslate; target.style.transform = `translate(${beforeTranslate[0]}px, ${beforeTranslate[1]}px)` } }
+      onDragEnd={ ({target,isDrag,clientX,clientY}) => console.log(target,isDrag) }
+    />
+  )
+};
 
 function CalculatorDisplay() {
   const calchook = CalcHook.useContainer();
@@ -40,6 +63,9 @@ function CalculatorDisplay() {
   ];
 
   return (
+    <>
+    <MoveableComponent />
+    <div className='boxer'></div>
     <div className='box'>
       <div id='display'>{calchook.expr}</div>
       <div className='buttons'>
@@ -50,6 +76,7 @@ function CalculatorDisplay() {
         )}
       </div>
     </div>
+    </>
   )
 };
 
@@ -57,6 +84,7 @@ function BackgroundDisplay() {
   const binghook = BingHook.useContainer();
 
   return (
+    <>
     <div className='slate'>
       {binghook.loading ? <h1>Loading...</h1> :
       <CalcHook.Provider>
@@ -65,6 +93,7 @@ function BackgroundDisplay() {
       </CalcHook.Provider>
       }
     </div>
+    </>
   )
 };
 
